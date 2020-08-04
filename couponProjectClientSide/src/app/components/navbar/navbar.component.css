@@ -1,0 +1,51 @@
+.title{
+
+  width: 350px;
+
+}
+
+.title:focus {
+  outline: 0;
+  width: 350px;
+}
+
+.h{
+  width: 50px;
+}
+
+a{
+  margin: 10px;
+  padding: 12px;
+  border: #fffbf9 2px solid;
+  border-radius: 10px 50px 30px;
+  color: #fdffff;
+  text-decoration: none;
+}
+
+a:hover{
+  margin: 10px;
+  padding: 12px;
+  border: #fffbf9 2px solid;
+  border-radius: 10px 50px 30px;
+  color: #fdffff;
+  background-color: #5063ff;
+  text-decoration: none;
+  outline: 0;
+}
+
+mat-toolbar{
+  margin-bottom: 25px;
+}
+
+.cart{
+  position: absolute;
+  right: 30px;
+  outline: 0;
+
+}
+
+.cart:hover{
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+}

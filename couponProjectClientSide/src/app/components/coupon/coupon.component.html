@@ -1,0 +1,33 @@
+<nav aria-label="breadcrumb" *ngIf="coupon">
+    <span class="breadcrumb-item-active" routerLink=""><b>Home</b></span>
+  <span class="space"> / </span>
+  <span class="breadcrumb-item-active" routerLink="/{{coupon.category}}"><b>{{coupon.category}}</b></span>
+  <span class="space"> / </span>
+  <span class="breadcrumb-item"> {{coupon.title}} </span>
+</nav>
+
+<div *ngIf="coupon" class="parent">
+
+  <h1 class="title">{{coupon.title}}</h1>
+  <h1 class="company">By {{companyName}}</h1>
+
+  <span class="description">{{coupon.description}}</span>
+
+  <img *ngIf="couponImage == ' '" src="../../../../assets/IMG/coupon Images/coupon default  image.jpg"/>
+  <img *ngIf="couponImage != ' '" src="{{coupon.image}}"/>
+
+
+
+  <span class="EndDate">this coupon will expire in {{daysUntilExpiration}} days [ {{coupon.endDate}} ]</span>
+
+
+  <h1 class="price">price ₪{{coupon.price}}</h1>
+
+  <button class="button" mat-raised-button (click)="addToCart()" *ngIf="!couponPurchased && login">add to cart</button>
+  <button class="button" mat-raised-button (click)="guestChecker()" *ngIf="!login" matTooltip="you need to login as customer in order to buy coupons">add to cart</button>
+<!--  <button class="button" mat-raised-button disabled *ngIf="couponPurchased">coupon Purchased!</button>-->
+  <button class="button" mat-raised-button disabled *ngIf="couponPurchased">{{addedToCart}}</button>
+  <button class="CompanyUpdateControlButton" mat-raised-button *ngIf="companyHere" (click)="updateCoupon(coupon.id)" >Update Coupon</button>
+  <button class="CompanyDeleteControlButton" mat-raised-button *ngIf="companyHere" (click)="deleteCoupon(coupon.id)">Delete Coupon</button>
+
+</div>

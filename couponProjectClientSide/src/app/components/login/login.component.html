@@ -1,0 +1,29 @@
+<div>login form</div>
+
+<form [formGroup]="login">
+
+  <mat-form-field>
+    <input type="email" placeholder="email address" matInput formControlName="email" />
+    <mat-error>valid email is required!</mat-error>
+  </mat-form-field>
+<br/>
+  <mat-form-field>
+    <input type="password" placeholder="Password" matInput formControlName="password" />
+    <mat-error>password is required!</mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-select matInput formControlName="clientType" placeholder="who are you?">
+    <mat-option *ngFor="let c of clientType1" [value]="c.value">
+      {{c.viewValue}}
+    </mat-option>
+    <mat-error></mat-error>
+  </mat-select>
+<br/>
+  <br/>
+
+  <button [disabled]="login.invalid" mat-raised-button mat-button (click)="log()">login</button>
+<br/><br/>
+
+</form>
+
+

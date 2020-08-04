@@ -1,0 +1,51 @@
+<div class="main">
+  <div class="container">
+    <h2>Market Place Cart<small *ngIf="coupons.length != 0 && !done"> Chosen Coupon Are Listed Below</small>
+      <small *ngIf="coupons.length == 0  && !done"> Your Cart Is Empty</small>
+      <small *ngIf="done"> Thank You For Chosen Market Place!</small></h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col-1">Id.</div>
+        <div class="col-2">Title</div>
+        <div class="col-3">Category</div>
+        <div class="col-4">Price</div>
+        <div class="col-5" *ngIf="!done">Delete</div>
+        <div class="col-5" *ngIf="done"></div>
+      </li>
+      <ng-template [ngIf]="beforePurchase">
+      <li class="table-row"  *ngFor="let c of coupons">
+        <div class="col-1">{{c.id}}</div>
+        <div class="col-2">{{c.title}}</div>
+        <div class="col-3">{{c.category}}</div>
+        <div class="col-4">{{c.price}}</div>
+        <div class="col-5" ><mat-icon class="delete" (click)="deleteCoupon(c.id)">delete</mat-icon></div>
+      </li>
+      </ng-template>
+      <ng-template [ngIf]="done">
+        <li class="table-row-done"  *ngFor="let c of coupons">
+          <div class="col-1">{{c.id}}</div>
+          <div class="col-2">{{c.title}}</div>
+          <div class="col-3">{{c.category}}</div>
+          <div class="col-4">{{c.price}}</div>
+          <div class="col-5"><mat-icon>done</mat-icon></div>
+        </li>
+      </ng-template>
+      <ng-template [ngIf]="unDone">
+        <li class="table-row-unDone"  *ngFor="let c of coupons">
+          <div class="col-1">{{c.id}}</div>
+          <div class="col-2">{{c.title}}</div>
+          <div class="col-3">{{c.category}}</div>
+          <div class="col-4">{{c.price}}</div>
+          <div class="col-5"><mat-icon>error</mat-icon></div>
+        </li>
+      </ng-template>
+    </ul>
+    <div class="buttons">
+      <button mat-raised-button class="purchaseButton" [disabled]="purchaseDisabled" (click)="purchaseCoupons()">purchaseCoupons</button>
+      <button mat-raised-button class="purchaseButton" (click)="emptyCart()">Empty Cart</button>
+    </div>
+  </div>
+
+</div>
+
+

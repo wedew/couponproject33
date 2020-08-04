@@ -1,0 +1,105 @@
+<div *ngIf="allowed">
+  <div class="companyDetails" *ngIf="company">
+    <h2 class="companyName">Welcome Back {{company.name}}</h2>
+    <br/><br/><br/>
+    <span class="companyId">personal Id: </span>
+    <span class="space"> </span>
+    {{company.id}}
+    <br/>
+    <span class="companyId">email address registered : </span>
+    <span class="space2"> </span>
+    {{company.email}}
+    <br/>
+    <span class="companyId">Current Active Coupons : </span>
+    <span class="space2"> </span>
+    {{company.coupons.length}}
+    <br/>
+    <span class="companyId">About To Expire Coupons : </span>
+    <span class="space2"> </span>
+    <span *ngIf="aboutToExpire != 0"> {{aboutToExpire}}</span>
+    <span *ngIf="aboutToExpire == 0">no coupon is about to expire soon</span>
+    <mat-icon matTooltip="send request to Your Admin to Change Information">edit</mat-icon>
+
+      <div class="slider">
+      Get By Category
+        <br/>
+        <br/>
+      <mat-slide-toggle (change)="reload()" [(ngModel)]="isChecked"></mat-slide-toggle>
+        <br/>
+        <br/>
+        Get By MaxPrice
+        <br/>
+      <mat-form-field *ngIf="isChecked">
+        <mat-label>Get Coupons By MaxPrice</mat-label>
+        <input type="number" matInput placeholder="enter Maximum Price" [(ngModel)]="maxPrice" (ngModelChange)="getByMaxPrice()" />
+      </mat-form-field>
+      <mat-form-field *ngIf="!isChecked">
+        <mat-label>Get Coupons By Category</mat-label>
+        <mat-select matInput [(ngModel)]="categoryType" (ngModelChange)="getByCategory()">
+          <mat-option *ngFor="let c of category" [value]="c.value" >
+            {{c.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+    <a (click)="newCoupon()" class="addCouponButton" >Add Coupon</a>
+  </div>
+
+
+  <div class="list">
+    <mat-accordion>
+      <mat-accordion class="accordionHeader">
+        <mat-expansion-panel disabled class="accordionHeader">
+          <mat-expansion-panel-header>
+            <mat-panel-title>id</mat-panel-title>
+            <mat-panel-title>category</mat-panel-title>
+            <mat-panel-title>title</mat-panel-title>
+            <mat-panel-title>price</mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+      </mat-accordion>
+<!--      <mat-expansion-panel disabled class="panel">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <mat-panel-title>id</mat-panel-title>-->
+<!--          <mat-panel-title>category</mat-panel-title>-->
+<!--          <mat-panel-title>title</mat-panel-title>-->
+<!--          <mat-panel-title>price</mat-panel-title>-->
+<!--        </mat-expansion-panel-header>-->
+<!--      </mat-expansion-panel>-->
+      <mat-expansion-panel *ngFor="let c of compCoupons" class="panel">
+        <mat-expansion-panel-header >
+          <mat-panel-title>
+            {{c.id}}
+          </mat-panel-title>
+          <mat-panel-title>
+            {{c.category}}
+          </mat-panel-title>
+          <mat-panel-title>
+            {{c.title}}
+          </mat-panel-title>
+          <mat-panel-title>
+            {{c.price}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="parent">
+        <img *ngIf="c.image == ' '" class="image" src="../../../../assets/IMG/coupon Images/coupon default  image.jpg" alt="coupon image"/>
+        <img *ngIf="c.image != ' '" class="image" src="{{c.image}}" alt="coupon default image"/>
+                  <div class="desc">{{c.description}}</div>
+        <div class="startAndEndDate">start date: {{c.startDate}}<br/> end date: {{c.endDate}}<br/>coupon left: {{c.amount}}</div>
+<!--          [routerLink]="['/updateCoupon/',c.id]"-->
+        <div class="buttons">
+          <button mat-raised-button [routerLink]="['/coupon/',c.id]">View Coupon</button>
+          <button mat-raised-button  (click)="updateCoupon(c.id)">Update Coupon</button>
+          <button mat-raised-button (click)="deleteCoupon(c.id)">delete Coupon</button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = true">
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+</div>
+
+<div *ngIf="!allowed">you are not allowed to view this section..</div>

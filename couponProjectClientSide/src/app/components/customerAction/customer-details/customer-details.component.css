@@ -1,0 +1,103 @@
+.accordionHeader{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 1600px;
+  z-index: 2;
+  box-shadow: 0 0 ;
+}
+
+
+.panel{
+  width: 1600px;
+}
+
+img{
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  right: 1225px;
+}
+
+
+.desc{
+  position: absolute;
+  top: 25px;
+  width: 900px;
+  right: 125px;
+}
+
+.startAndEndDate{
+  position: absolute;
+  top: 225px;
+  right: 1400px;
+}
+
+.buttons{
+  position: absolute;
+  top: 225px;
+  right: 1400px;
+}
+
+.list{
+  margin: auto;
+  padding: 70px;
+}
+
+mat-panel-title{
+  flex-basis: 0;
+}
+
+.slider{
+  position: absolute;
+  text-align: center;
+  right: 5px;
+  bottom: 0;
+}
+.parent{
+  position: relative;
+  width: 1550px;
+  height: 300px;
+}
+
+.customerDetails{
+  position: relative;
+  margin: auto;
+  width: 700px;
+  height: 200px;
+  background-color: rgba(86, 106, 255, 0.03);
+}
+
+.customerName{
+  position: absolute;
+  padding: 20px;
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+.space{
+  display: inline-block;
+  width: 160px;
+}
+
+.customerId{
+  color: #3f51b5;
+  position: absolute;
+  left: 60px;
+}
+.space2{
+  display: inline-block;
+  width: 250px;
+}
+
+mat-slide-toggle{
+  transform: rotate(90deg);
+
+}
+
+mat-icon{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #3f51b5;
+}
